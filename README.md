@@ -1,114 +1,189 @@
-# Gestion du Transport Scolaire — Association El Kheir
+# 🚌 School Transportation Management System
+### 💙 El Kheir Association — A Community Impact Project
 
-## À propos du projet
+<p align="center">
+  <img src="https://img.shields.io/badge/Java-21-orange?logo=openjdk&logoColor=white" alt="Java 21" />
+  <img src="https://img.shields.io/badge/Spring_Boot-3.3-6DB33F?logo=springboot&logoColor=white" alt="Spring Boot" />
+  <img src="https://img.shields.io/badge/Angular-19-DD0031?logo=angular&logoColor=white" alt="Angular 19" />
+  <img src="https://img.shields.io/badge/SQLite-Local_Database-003B57?logo=sqlite&logoColor=white" alt="SQLite" />
+  <img src="https://img.shields.io/badge/Platform-Windows-0078D4?logo=windows&logoColor=white" alt="Windows" />
+</p>
 
-Ce projet est une **initiative personnelle à vocation sociale et solidaire**, réalisée bénévolement dans le but d’aider l’association **El Kheir**, une association locale de notre région, à améliorer la gestion de son service de transport scolaire.
+---
 
-L’objectif est de mettre à la disposition de l’association un outil informatique simple, pratique et accessible, lui permettant de mieux organiser le suivi des élèves transportés depuis différents douars, la gestion des parents (tuteurs légaux) ainsi que le suivi des paiements mensuels.
+## 🌍 About the Project
 
-Cette solution a été conçue pour répondre aux besoins concrets de l’association, en facilitant les tâches administratives quotidiennes et en réduisant la dépendance aux documents papier et aux fichiers Excel dispersés.
+**School Transportation Management System** is a personal social-impact project developed voluntarily to support **El Kheir Association**, a local association in my community.
 
-Le projet s’inscrit dans une démarche de **partage des compétences informatiques au service de la communauté locale**, en utilisant le développement logiciel pour apporter une contribution concrète à une initiative associative.
+The initiative aims to help the association organize and manage its school transportation service more efficiently by replacing scattered spreadsheets and paper records with a centralized, easy-to-use desktop application.
 
-## Présentation de l’application
+🎯 **The main goals are to:**
+- 🧑‍🎓 Simplify student and parent management.
+- 💰 Improve the tracking of registration fees and monthly payments.
+- 📊 Provide a clear overview of payment status and outstanding balances.
+- 🗂️ Reduce repetitive administrative tasks.
+- 🤝 Put software engineering skills at the service of the local community.
 
-**Gestion du Transport Scolaire** est une application de bureau destinée à fonctionner localement sous Windows, sans connexion Internet ni configuration manuelle d’un serveur.
+> 💙 This project reflects my belief that technology can create meaningful local impact when it addresses real-world needs.
 
-Elle propose une interface bilingue en **français et en arabe**, avec prise en charge de l’affichage de droite à gauche (RTL) pour l’arabe.
+## ✨ Key Features
 
-## Fonctionnalités
+<table>
+  <tr>
+    <td width="50%">
+      <h3>🧑‍🎓 Student Management</h3>
+      <ul>
+        <li>Add, update, and archive students.</li>
+        <li>Search by student or parent name.</li>
+        <li>Filter by gender and village.</li>
+        <li>Browse paginated student lists.</li>
+      </ul>
+    </td>
+    <td width="50%">
+      <h3>👨‍👩‍👧 Parent Management</h3>
+      <ul>
+        <li>Associate multiple children with one parent.</li>
+        <li>Create parent records directly from student forms.</li>
+        <li>Keep related student records organized.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3>💳 Payment Management</h3>
+      <ul>
+        <li>Record registration fees and monthly payments.</li>
+        <li>Automatically generate receipt numbers.</li>
+        <li>Support partial payments.</li>
+        <li>Track paid, due, remaining, and credited amounts.</li>
+        <li>View payment records from September to June.</li>
+      </ul>
+    </td>
+    <td width="50%">
+      <h3>📈 Reports & Export</h3>
+      <ul>
+        <li>Export student lists to Excel.</li>
+        <li>Export payment tables and parent balances.</li>
+        <li>Print records and generate PDF documents.</li>
+        <li>Identify outstanding payments quickly.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3>⚙️ Application Settings</h3>
+      <ul>
+        <li>Configure registration and monthly fees.</li>
+        <li>Manage school years.</li>
+        <li>Change the administrator password.</li>
+        <li>Create manual database backups.</li>
+      </ul>
+    </td>
+    <td width="50%">
+      <h3>🖥️ Desktop Experience</h3>
+      <ul>
+        <li>Launch directly from the Windows desktop.</li>
+        <li>Run locally without an Internet connection.</li>
+        <li>Support French and Arabic interfaces.</li>
+        <li>Include automatic daily backups.</li>
+        <li>Access the application from the system tray.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
-- **Gestion des élèves :** ajout, modification, archivage, liste paginée, filtres par sexe et par douar, recherche par nom d’élève ou de parent.
-- **Gestion des parents :** association de plusieurs enfants à un même parent et création rapide d’un parent depuis le formulaire d’un élève.
-- **Gestion des paiements :**
-  - Saisie des paiements d’inscription et des mensualités pour un ou plusieurs enfants.
-  - Génération automatique des numéros de bons de paiement (`B-00001`, `B-00002`, etc.).
-  - Prise en charge des paiements partiels.
-  - Tableau de suivi des paiements par élève et par mois, de septembre à juin.
-  - Suivi des montants dus, payés, restants et des éventuels crédits des parents.
-  - Filtrage des élèves dont les paiements ne sont pas entièrement réglés.
-- **Exportation et impression :** export des listes d’élèves, des tableaux de paiements et des soldes vers Excel, avec possibilité d’impression et de génération de PDF.
-- **Paramètres :** configuration des tarifs, gestion de la nouvelle année scolaire, changement du mot de passe et sauvegarde de la base de données.
-- **Utilisation simplifiée :** lancement depuis le bureau Windows, prévention des instances multiples, icône dans la zone de notification et sauvegarde automatique quotidienne.
+## 💵 Business Rules
 
-## Règles de gestion
-
-| Élément | Règle |
+| 📌 Item | 📝 Rule |
 |---|---|
-| Frais d’inscription | 30 DH, une seule fois par parent et par année scolaire, quel que soit le nombre d’enfants |
-| Transport mensuel | 100 DH pour le premier enfant et 50 DH pour chaque enfant supplémentaire |
-| Tarif personnalisé | Possibilité de définir un tarif spécifique pour un élève |
-| Année scolaire | De septembre à juin, soit 10 mois |
-| Départ d’un élève | La facturation s’arrête à partir du mois de sortie, tout en conservant l’historique des paiements |
-| Arrivée en cours d’année | La facturation commence à partir du mois d’entrée |
-| Douars pris en charge | Lamnizla, Talbort, Talaïnt, Tamda et Ighzer Aghanime |
+| 📝 Registration fee | MAD 30 per parent, once per school year |
+| 🚌 First child | MAD 100 per month |
+| 👨‍👩‍👧 Additional children | MAD 50 per child per month |
+| 📅 School year | September – June (10 months) |
+| ➕ Mid-year enrollment | Billing starts from the enrollment month |
+| ➖ Student departure | Billing stops from the departure month; payment history is retained |
+| 🏡 Supported villages | Lamnizla, Talbort, Talaïnt, Tamda, Ighzer Aghanime |
+| ⚙️ Custom pricing | Optional individual rate per student |
 
-Les tarifs peuvent être modifiés depuis la rubrique **Paramètres**.
+*All fees can be configured from the application's Settings section.*
 
-## Technologies utilisées
+## 🛠️ Technology Stack
 
-| Couche | Technologies |
+| Layer | Technology |
 |---|---|
-| Interface utilisateur | Angular 19 — composants standalone |
-| Backend et API REST | Spring Boot 3.3, Spring Security, Spring Data JPA |
-| Base de données | SQLite |
-| Langage backend | Java 21 |
-| Packaging Windows | `jpackage` et Inno Setup 6 |
+| 🎨 Frontend | Angular 19 — Standalone Components |
+| ⚙️ Backend | Spring Boot 3.3 |
+| 🔌 API | REST API |
+| 🔐 Security | Spring Security — HTTP Basic |
+| 🗄️ Database | SQLite |
+| ☕ Language | Java 21 |
+| 📦 Packaging | `jpackage` + Inno Setup 6 |
 
-## Architecture technique
+## 🏗️ Architecture
 
 ```text
-Interface Angular compilée
-          │
-          ▼
-Spring Boot — 127.0.0.1:8081
-          │
-          ├── API REST (/api/**)
-          │
-          ▼
-Base de données SQLite
-          │
-          └── data.db
+┌──────────────────────────────────────┐
+│        Angular Web Interface         │
+│        French 🇫🇷 / Arabic 🇲🇦        │
+└──────────────────┬───────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────┐
+│       Spring Boot Application        │
+│          127.0.0.1:8081              │
+│                                      │
+│  ┌────────────────────────────────┐  │
+│  │       REST API (/api/**)        │  │
+│  └────────────────────────────────┘  │
+└──────────────────┬───────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────┐
+│          SQLite Database             │
+│               data.db                │
+└──────────────────────────────────────┘
 ```
 
-En production, l’application fonctionne dans un seul processus : Spring Boot sert à la fois l’API REST et l’interface Angular compilée.
+🚀 **Production mode:** Spring Boot serves both the REST API and the compiled Angular interface in a single process.
 
-Le serveur écoute uniquement sur l’adresse locale `127.0.0.1`, ce qui évite d’exposer l’application directement aux autres appareils du réseau.
+🔒 **Local access only:** The application listens on `127.0.0.1` and is not directly accessible from other devices on the network.
 
-## Structure du dépôt
+## 📂 Repository Structure
 
 ```text
-gestion-etudiants-backend/
-├── src/main/java/             Code Java
-├── src/main/resources/static/ Interface Angular compilée
-├── build-exe.bat              Génération de l’exécutable
-├── build-installer.bat        Génération de l’installateur
-└── installer.iss              Configuration Inno Setup
-
-frontend/                      Sources Angular
-README.md
+📦 project-root/
+├── 📁 gestion-etudiants-backend/
+│   ├── 📁 src/main/java/              # Java source code
+│   ├── 📁 src/main/resources/static/  # Compiled Angular frontend
+│   ├── 📄 build-exe.bat               # Build Windows executable
+│   ├── 📄 build-installer.bat         # Build Windows installer
+│   └── 📄 installer.iss               # Inno Setup configuration
+├── 📁 frontend/                       # Angular source code
+└── 📄 README.md
 ```
 
-## Lancement en développement
+## 🚀 Getting Started
 
-### Prérequis
+### 📋 Prerequisites
 
-- JDK 21
-- Maven ou le wrapper Maven fourni avec le projet
+- ☕ JDK 21
+- 📦 Maven or the included Maven wrapper
 
-1. Ouvrir le dossier `gestion-etudiants-backend` dans IntelliJ IDEA.
-2. Lancer la classe principale `GestionEtudiantsBackendApplication`.
-3. Accéder à l’application depuis [http://localhost:8081](http://localhost:8081).
+### ▶️ Run the Backend
 
-Pour désactiver le lancement automatique du navigateur et de l’icône de notification pendant le développement, utiliser l’argument :
+1. Open `gestion-etudiants-backend` in IntelliJ IDEA.
+2. Run `GestionEtudiantsBackendApplication`.
+3. Open [http://localhost:8081](http://localhost:8081).
+
+To disable the automatic browser launch and system tray icon during development:
 
 ```text
 --app.launcher.enabled=false
 ```
 
-### Modification de l’interface Angular
+### 🎨 Run the Frontend Separately
 
-Prérequis : Node.js 20 ou 22.
+Prerequisite: Node.js 20 or 22.
 
 ```bash
 cd frontend
@@ -116,72 +191,81 @@ npm install
 npm start
 ```
 
-L’interface de développement sera accessible à l’adresse [http://localhost:4200](http://localhost:4200), avec un proxy vers le backend sur le port 8081.
+The Angular development server runs at [http://localhost:4200](http://localhost:4200) and uses a proxy to communicate with the backend on port 8081.
 
-Pour compiler l’interface et l’intégrer au backend :
+To build the frontend and copy it into the backend:
 
 ```bash
 npm run deploy
 ```
 
-### Génération de l’exécutable et de l’installateur Windows
+## 📦 Build the Windows Installer
 
-Prérequis :
+### Prerequisites
 
-- JDK 21 avec `jpackage` disponible dans le `PATH`.
+- JDK 21 with `jpackage` available in `PATH`.
 - [Inno Setup 6](https://jrsoftware.org/isdl.php).
 
-Depuis le dossier `gestion-etudiants-backend` :
+Run the following commands from the backend directory:
 
 ```bat
 build-exe.bat
 build-installer.bat
 ```
 
-L’installateur généré est :
+📁 The installer is generated at:
 
 ```text
 dist/Setup-GestionEtudiants-1.0.0.exe
 ```
 
-Il constitue le fichier à remettre à l’utilisateur final. L’installation est conçue pour fonctionner sans demander de droits administrateur.
+The installer is designed to be distributed as a single file and to work without administrator privileges.
 
-Pour modifier la version, mettre à jour `AppVersion` dans `installer.iss` et `--app-version` dans `build-exe.bat`.
+To change the application version, update `AppVersion` in `installer.iss` and `--app-version` in `build-exe.bat`.
 
-## Stockage des données et sauvegardes
+## 💾 Data Storage & Backups
 
-Les données sont enregistrées localement dans un fichier SQLite, en dehors du répertoire d’installation :
+Application data is stored outside the installation directory:
 
 ```text
 %LOCALAPPDATA%\GestionEtudiants\
-├── data.db
-├── backups/    Sauvegardes automatiques quotidiennes
-└── logs/       Journaux de l’application
+├── 📄 data.db
+├── 📁 backups/    # Daily automatic backups
+└── 📁 logs/       # Application logs
 ```
 
-- Les sauvegardes automatiques conservent les 30 derniers jours.
-- La désinstallation du logiciel ne supprime pas les données.
-- Une sauvegarde manuelle peut être téléchargée depuis la rubrique **Paramètres**.
-- Pour restaurer une sauvegarde, fermer l’application, remplacer `data.db` par la copie souhaitée, puis relancer le logiciel.
+- 🔄 Automatic daily backups, with the last 30 days retained.
+- 🛡️ Uninstalling the application does not delete the stored data.
+- 📥 Manual backups are available from Settings.
+- ♻️ To restore a backup, close the application, replace `data.db` with the desired backup, and restart the application.
 
-## Sécurité et confidentialité
+## 🔐 Security & Privacy
 
-- Un compte administrateur est créé au premier lancement. Il est recommandé de modifier immédiatement le mot de passe initial.
-- Les données des élèves et des parents, notamment les numéros de téléphone et les informations de paiement, doivent rester confidentielles.
-- Le fichier `data.db` et ses sauvegardes ne doivent jamais être publiés sur un dépôt public.
-- Le fichier `.gitignore` est configuré pour exclure les données locales sensibles du dépôt.
+- 🔑 An administrator account is created on the first launch. Change the initial password immediately.
+- 🛡️ Student and parent information, including phone numbers and payment records, must remain confidential.
+- 🚫 Never publish `data.db` or its backups in a public repository.
+- 📄 The `.gitignore` file excludes local sensitive data files.
 
-## Impact social
+## 💙 Community Impact
 
-Au-delà de l’aspect technique, ce projet représente une contribution personnelle à une initiative associative locale. Il vise à faciliter la gestion du transport scolaire, à améliorer le suivi administratif et à permettre aux membres de l’association de consacrer moins de temps aux tâches manuelles.
+This project is more than a software development exercise: it is a **voluntary contribution to a local community initiative**.
 
-Il illustre également une volonté de mettre les compétences acquises en développement logiciel au service d’un besoin réel, avec une solution adaptée aux moyens et aux contraintes d’une association locale.
+By providing El Kheir Association with a dedicated digital tool, the project aims to improve administrative organization, simplify payment tracking, and reduce the workload associated with manual record-keeping.
 
-## Auteur
+It demonstrates how software engineering can be used not only to build applications, but also to support local organizations and respond to practical community needs.
+
+## 👨‍💻 Author
 
 **Anas Adiouane**  
-Ingénieur d’État en Génie Informatique
+🎓 State Engineer in Computer Science  
+💻 Junior Backend Developer — Java & Spring Boot
 
-Projet personnel à vocation sociale, réalisé bénévolement pour l’association **El Kheir**.
+🤝 Developed voluntarily for **El Kheir Association** as a personal social-impact project.
 
-Dépôt privé.
+🔒 **Repository:** Private
+
+---
+
+<p align="center">
+  <i>Building useful software. Supporting the local community. 💙</i>
+</p>
