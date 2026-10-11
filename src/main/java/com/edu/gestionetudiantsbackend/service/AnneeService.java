@@ -1,6 +1,7 @@
 package com.edu.gestionetudiantsbackend.service;
 
 import com.edu.gestionetudiantsbackend.dto.NouvelleAnneeRequest;
+import com.edu.gestionetudiantsbackend.dto.TarifsRequest;
 import com.edu.gestionetudiantsbackend.exception.BadRequestException;
 import com.edu.gestionetudiantsbackend.exception.ConflictException;
 import com.edu.gestionetudiantsbackend.model.AnneeScolaire;
@@ -28,6 +29,16 @@ public class AnneeService {
     @Transactional(readOnly = true)
     public List<AnneeScolaire> liste() {
         return annees.findAllByOrderByIdDesc();
+    }
+
+    /** Modifier les tarifs de l'année active (recalcule les montants dus de toute l'année) */
+    public AnneeScolaire modifierActive(TarifsRequest r) {
+        AnneeScolaire a = annees.findFirstByActiveTrue()
+                .orElseThrow(() -> new ConflictException("Aucune année scolaire active."));
+        a.setFraisInscription(r.fraisInscription());
+        a.setTarifPremier(r.tarifPremier());
+        a.setTarifSuivant(r.tarifSuivant());
+        return annees.save(a);
     }
 
     /**

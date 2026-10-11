@@ -1,7 +1,9 @@
 package com.edu.gestionetudiantsbackend.service;
 
 import com.edu.gestionetudiantsbackend.dto.EtudiantRequest;
+import com.edu.gestionetudiantsbackend.exception.ConflictException;
 import com.edu.gestionetudiantsbackend.exception.NotFoundException;
+import com.edu.gestionetudiantsbackend.model.AnneeScolaire;
 import com.edu.gestionetudiantsbackend.model.Etudiant;
 import com.edu.gestionetudiantsbackend.model.Genre;
 import com.edu.gestionetudiantsbackend.repository.EtudiantRepository;
@@ -10,8 +12,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -19,29 +25,58 @@ public class EtudiantService {
 
     private final EtudiantRepository etudiants;
     private final TuteurService tuteurService;
+    private final SoldeService soldes;
 
-    public EtudiantService(EtudiantRepository etudiants, TuteurService tuteurService) {
+    public EtudiantService(EtudiantRepository etudiants, TuteurService tuteurService, SoldeService soldes) {
         this.etudiants = etudiants;
         this.tuteurService = tuteurService;
+        this.soldes = soldes;
     }
 
     @Transactional(readOnly = true)
     public Page<Etudiant> search(Genre genre, String douar, String q, Pageable pageable) {
-        return etudiants.search(genre,
+        Page<Etudiant> page = etudiants.search(genre,
                 TuteurService.blankToNull(douar),
                 TuteurService.blankToNull(q),
                 pageable);
+        remplirTarifs(page.getContent());
+        return page;
+    }
+
+    /**
+     * Calcule le tarif mensuel actuel de chaque étudiant (100 / 50 / tarif perso)
+     * pour le mois courant (ou le premier mois dû si on est en juillet-août).
+     */
+    private void remplirTarifs(Collection<Etudiant> liste) {
+        AnneeScolaire annee;
+        try {
+            annee = soldes.anneeActive();
+        } catch (ConflictException ex) {
+            return; // pas d'année active: on n'affiche pas de tarif
+        }
+        int mois = LocalDate.now().getMonthValue();
+        Map<Long, Map<Long, Map<Integer, BigDecimal>>> parWaliy = new HashMap<>();
+        for (Etudiant e : liste) {
+            Map<Long, Map<Integer, BigDecimal>> tarifs =
+                    parWaliy.computeIfAbsent(e.getTuteur().getId(), id -> soldes.tarifs(id, annee));
+            Map<Integer, BigDecimal> m = tarifs.get(e.getId());
+            if (m == null || m.isEmpty()) continue;
+            BigDecimal t = m.get(mois);
+            e.setTarifActuel(t != null ? t : m.values().iterator().next());
+        }
     }
 
     @Transactional(readOnly = true)
     public Etudiant get(Long id) {
-        return etudiants.findById(id)
+        Etudiant e = etudiants.findById(id)
                 .orElseThrow(() -> new NotFoundException("Étudiant introuvable: " + id));
+        remplirTarifs(List.of(e));
+        return e;
     }
 
     @Transactional(readOnly = true)
     public List<String> douars() {
-        return etudiants.findDistinctDouars();
+        return Douars.CODES;
     }
 
     public Etudiant create(EtudiantRequest r) {
@@ -67,9 +102,10 @@ public class EtudiantService {
         e.setNom(r.nom().trim());
         e.setPrenom(r.prenom().trim());
         e.setGenre(r.genre());
-        e.setDouar(TuteurService.blankToNull(r.douar()));
+        e.setDouar(Douars.verifier(r.douar()));
         e.setNiveau(TuteurService.blankToNull(r.niveau()));
         e.setTuteur(tuteurService.get(r.tuteurId()));
+        e.setTarifPersonnalise(r.tarifPersonnalise());
         e.setMoisDebut(r.moisDebut() != null ? r.moisDebut() : 9);
         e.setMoisSortie(r.moisSortie());
         return e;

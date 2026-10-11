@@ -6,8 +6,12 @@ import java.util.Map;
 
 public record SoldeDetailDto(SoldeDto solde, List<EtudiantSolde> etudiants) {
 
-    /** tarifs = taman dyal kol chhr dû; moisImpayes = mois li mazal ma tkhllsoch kamlin */
+    /**
+     * tarifs = taman dyal kol chhr dû; moisImpayes = mois li mazal ma tkhllsoch kamlin;
+     * restes = chhr → chhal mazal khass ytkhllss (kay-khdem l'forme dyal paiement)
+     */
     public record EtudiantSolde(Long etudiantId, String nomComplet, Map<Integer, BigDecimal> tarifs,
-                                List<Integer> moisDus, List<Integer> moisImpayes, BigDecimal reste) {
+                                List<Integer> moisDus, List<Integer> moisImpayes,
+                                Map<Integer, BigDecimal> restes, BigDecimal reste) {
     }
 }

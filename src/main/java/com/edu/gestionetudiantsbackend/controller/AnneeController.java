@@ -1,7 +1,7 @@
 package com.edu.gestionetudiantsbackend.controller;
 
-
 import com.edu.gestionetudiantsbackend.dto.NouvelleAnneeRequest;
+import com.edu.gestionetudiantsbackend.dto.TarifsRequest;
 import com.edu.gestionetudiantsbackend.model.AnneeScolaire;
 import com.edu.gestionetudiantsbackend.service.AnneeService;
 import com.edu.gestionetudiantsbackend.service.SoldeService;
@@ -31,6 +31,11 @@ public class AnneeController {
     @GetMapping("/active")
     public AnneeScolaire active() {
         return soldes.anneeActive();
+    }
+
+    @PutMapping("/active")
+    public AnneeScolaire modifierActive(@Valid @RequestBody TarifsRequest r) {
+        return service.modifierActive(r);
     }
 
     /** Body optionnel: {} kaykfi (libelle w tarifs kaytحسbo b rassohom) */

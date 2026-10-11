@@ -1,6 +1,5 @@
 package com.edu.gestionetudiantsbackend.service;
 
-
 import com.edu.gestionetudiantsbackend.dto.TuteurRequest;
 import com.edu.gestionetudiantsbackend.exception.ConflictException;
 import com.edu.gestionetudiantsbackend.exception.NotFoundException;
@@ -54,7 +53,7 @@ public class TuteurService {
     private Tuteur apply(Tuteur t, TuteurRequest r) {
         t.setNom(r.nom().trim());
         t.setTelephone(blankToNull(r.telephone()));
-        t.setDouar(blankToNull(r.douar()));
+        t.setDouar(Douars.verifier(r.douar()));
         return t;
     }
 

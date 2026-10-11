@@ -35,6 +35,13 @@ public class Etudiant {
     @JoinColumn(name = "tuteur_id")
     private Tuteur tuteur;
 
+    /** Override optionnel: ila kayn, had l'taman howa li kayt7sb f kol chhr (3awad 100/50). null = automatique */
+    private BigDecimal tarifPersonnalise;
+
+    /** Taman li kayt7sb daba (100 / 50 wla l'taman l'khass). Machi f l'DB: kayt7sb f kol request */
+    @Transient
+    private BigDecimal tarifActuel;
+
     /** Chhr dyal l'dkhol (1..12). Default 9 (septembre) */
     private Integer moisDebut = 9;
 

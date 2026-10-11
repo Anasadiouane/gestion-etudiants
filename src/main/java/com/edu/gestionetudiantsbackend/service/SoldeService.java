@@ -117,17 +117,19 @@ public class SoldeService {
             Map<Integer, BigDecimal> tarifsE = tarifs.getOrDefault(e.getId(), Map.of());
             List<Integer> dus = MoisScolaire.moisDus(e);
             List<Integer> impayes = new ArrayList<>();
+            Map<Integer, BigDecimal> restes = new LinkedHashMap<>();
             BigDecimal reste = BigDecimal.ZERO;
             for (Map.Entry<Integer, BigDecimal> en : tarifsE.entrySet()) {
                 BigDecimal p = payes.getOrDefault(cle(e.getId(), en.getKey()), BigDecimal.ZERO);
                 BigDecimal manque = en.getValue().subtract(p);
                 if (manque.signum() > 0) {
                     impayes.add(en.getKey());
+                    restes.put(en.getKey(), manque);
                     reste = reste.add(manque);
                 }
             }
             liste.add(new SoldeDetailDto.EtudiantSolde(e.getId(), e.getNom() + " " + e.getPrenom(),
-                    tarifsE, dus, impayes, reste));
+                    tarifsE, dus, impayes, restes, reste));
         }
         return new SoldeDetailDto(solde(t, a), liste);
     }
