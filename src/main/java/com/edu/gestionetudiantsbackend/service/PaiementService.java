@@ -133,11 +133,9 @@ public class PaiementService {
     }
 
     @Transactional(readOnly = true)
-    public Page<PaiementResponse> list(Long tuteurId, Pageable pageable) {
+    public Page<PaiementResponse> list(Long tuteurId, String q, Pageable pageable) {
         Long anneeId = soldes.anneeActive().getId();
-        Page<Paiement> page = tuteurId == null
-                ? paiements.findByAnneeId(anneeId, pageable)
-                : paiements.findByAnneeIdAndTuteurId(anneeId, tuteurId, pageable);
+        Page<Paiement> page = paiements.rechercher(anneeId, tuteurId, TuteurService.blankToNull(q), pageable);
         return page.map(p -> toResponse(p, false));
     }
 

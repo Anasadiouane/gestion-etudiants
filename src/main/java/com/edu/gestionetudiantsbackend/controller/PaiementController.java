@@ -1,6 +1,5 @@
 package com.edu.gestionetudiantsbackend.controller;
 
-
 import com.edu.gestionetudiantsbackend.dto.*;
 import com.edu.gestionetudiantsbackend.model.Genre;
 import com.edu.gestionetudiantsbackend.service.PaiementService;
@@ -37,9 +36,23 @@ public class PaiementController {
     @GetMapping
     public Page<PaiementResponse> list(@RequestParam(defaultValue = "0") int page,
                                        @RequestParam(defaultValue = "20") int size,
-                                       @RequestParam(required = false) Long tuteurId) {
-        return paiements.list(tuteurId,
-                PageRequest.of(page, Math.min(size, 100), Sort.by(Sort.Direction.DESC, "datePaiement", "id")));
+                                       @RequestParam(required = false) Long tuteurId,
+                                       @RequestParam(required = false) String q,
+                                       @RequestParam(defaultValue = "date") String tri,
+                                       @RequestParam(defaultValue = "desc") String ordre) {
+        return paiements.list(tuteurId, q, PageRequest.of(page, Math.min(size, 100), tri(tri, ordre)));
+    }
+
+    /** tri = parent | date | bon | total ; ordre = asc | desc */
+    private static Sort tri(String tri, String ordre) {
+        Sort.Direction d = "asc".equalsIgnoreCase(ordre) ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort parDate = Sort.by(Sort.Direction.DESC, "datePaiement", "id");
+        return switch (tri) {
+            case "parent" -> Sort.by(d, "tuteur.nom").and(parDate);
+            case "bon" -> Sort.by(d, "numeroBon");
+            case "total" -> Sort.by(d, "montantTotal").and(parDate);
+            default -> Sort.by(d, "datePaiement", "id");
+        };
     }
 
     @GetMapping("/{id}")
